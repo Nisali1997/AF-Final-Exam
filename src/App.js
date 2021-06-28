@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/navBar/navBar';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import CreateCategory from './components/createCategory/createCategory';
+import CreateRoom from './components/createRoom/createRoom';
+import Rooms from './components/rooms/rooms';
+import Categories from './components/rooms/categories';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <NavBar/>
+        <section>
+          <Switch>
+            <Route path="/create-category" component = {CreateCategory} />
+            <Route path="/create-room" component = {CreateRoom}/>
+            <Route path="/:id" component = {Categories} />
+            <Route path= "/" component = {Rooms} exact/>
+
+          </Switch>
+        </section>
+      </Router>
+     
     </div>
   );
 }
